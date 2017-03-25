@@ -1,0 +1,159 @@
+html, body {
+    min-height: 100%;
+    background-color: #aaaaaa;
+}
+
+.header {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+
+    min-height: 200px;
+
+    padding: 40px 40px 20px 40px;
+    margin-bottom: -5px;
+
+    background-color: #002438;
+    background-image: url('../images/headerbg.png');
+    background-position: center right;
+    background-size: auto;
+    background-repeat: repeat-y;
+}
+
+.header h1 {
+    margin: 0px;
+    color: white;
+}
+
+.header h2 {
+    color: #ddd;
+    font-weight: normal;
+    font-size: 1.2em;
+}
+
+.header img {
+    width: 100%;
+}
+
+.header .img-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.header .img-overlay:before {
+    content: ' ';
+    display: block;
+    /* adjust 'height' to position overlay content vertically */
+    height: 50%;
+}
+
+.main-container {
+    max-width: 1280px;
+    min-height: 100vh;
+    margin-top: 0;
+    padding: 0 0 0 0;
+    font-size: 12pt;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.43);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.43);
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.43);
+    background-color: #ffffff;
+}
+
+.main-content {
+    padding: 30px;
+}
+
+h3 {
+    display: inline;
+    margin-right: 10px;
+}
+
+h3:before {
+    content: "|";
+    position: relative;
+    left: -5px;
+}
+
+h3:first-child:before {
+    content: "";
+}
+
+h3.unactivated {
+    font-weight: 200;
+    color: #cccccc;
+}
+
+.row-offset-0 {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.row-offset-0 > * {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.content-container {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.section-header {
+    padding-bottom: 9px;
+    margin: 30px 0 15px;
+    border-bottom: 1px solid #eee
+}
+
+.section-header:first-child {
+    margin-top: 5px;
+}
+
+.section-header > h1, h2, h3, h4 {
+    font-weight: bold;
+}
+
+.section-header > h3:before {
+    content: "\25b8";
+    margin-right: 10px;
+    margin-left: -10px;
+}
+
+.section-content {
+    margin-left: 20px;
+}
+
+.thumbnail .caption {
+    text-align: center;
+    padding-bottom: 2px;
+}
+
+.thumbnail img {
+    opacity: 1;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.thumbnail:hover img {
+    opacity: .5
+}
+
+.sponsors .thumbnail {
+    height: 100%;
+}
+
+.sponsors .thumbnail img {
+    max-height: 80px;
+}
+
+.person-thumbnail img {
+    max-height: 150px;
+}
+
+.footer {
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
