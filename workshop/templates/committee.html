@@ -1,313 +1,221 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Committee | Huzhou-CUSTIPEN Workshop 2017</title>
+{% extends 'layout.html' %}
+{% set subtitle = "Committee" %}
+{% block body %}
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/stylesheet.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-<div class="container main-container">
-    <div class="header">
-        <h1>Huzhou-CUSTIPEN Workshop 2017</h1>
-        <div class="row">
-            <div class="col-md-6 col-lg-5">
-                <h2>
-                    On Spectroscopy and Reactions of Exotic Nuclei
-                    <div style="height: 0.5em;"></div>
-                    <span class="glyphicon glyphicon-calendar"></span>
-                    Jul 3 - 9, 2017
-                    <span style="width: 1em; display: inline-block;"></span>
-                    <span class="glyphicon glyphicon-map-marker"></span>
-                    Huzhou, Zhejiang, China
-                </h2>
-            </div>
-            <div class="col-md-2 col-lg-2" style="margin-top: 20px;">
-                <a href="./register.html">
-                    <button class="btn btn-lg btn-default hidden-sm hidden-xs">Register Now</button>
-                </a>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="navbar navbar-default visible-sm visible-xs" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target=".sidebar-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <span class="visible-xs navbar-brand">Huzhou CUSTIPEN Workshop 2017</span>
-        </div>
-        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-            <ul class="nav navbar-nav nav-">
-                <li><a href="./">Index</a></li>
-                <li class="active"><a href="./committee.html">Committees</a></li>
-                <li><a href="./program.html">Program</a></li>
-                <li><a href="./register.html">Registration</a></li>
-                <li><a href="./travel.html">Travel Info</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="./management.html">My Submission</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-
-
-    <div class="row main-content">
-        <div class="col-md-3 hidden-xs hidden-sm">
-            <ul class="nav nav-pills nav-pills nav-stacked">
-                <li><a href="./">Index</a></li>
-                <li class="active"><a href="./committee.html">Committees</a></li>
-                <li><a href="./program.html">Program</a></li>
-                <li><a href="./register.html">Registration</a></li>
-                <li><a href="./travel.html">Travel Info</a></li>
-                <div class="nav-divider"></div>
-                <li><a href="./management.html">My Submission</a></li>
-
-            </ul>
-
+<div class="row">
+    <div class="col-md-12">
+        <div class="section-header">
+            <h3>Organizing Committee</h3>
         </div>
 
-        <div class="col-md-9">
-            <div class="content-container">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-header">
-                            <h3>Organizing Committee</h3>
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="https://people.nscl.msu.edu/~daniel/home.html">
+                        <div class="thumbnail person-thumbnail">
+                            <img class="img-responsive"
+                                 src="{{ url_for('static', filename='images/committee/01pawel.png') }}"/>
                         </div>
-
-                        <div class="section-content">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <a href="https://people.nscl.msu.edu/~daniel/home.html">
-                                        <div class="thumbnail person-thumbnail">
-                                            <img class="img-responsive" src="images/committee/01pawel.png"/>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4><a href="https://people.nscl.msu.edu/~daniel/home.html">
-                                        Pawel Danielewicz</a></h4>
-                                    <p>Michigan State University</p>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <a href="http://www.tamuc.edu/academics/colleges/scienceEngineeringAgriculture/departments/physicsAstronomy/facultyStaff/drBaoAnLi.aspx">
-                                        <div class="thumbnail person-thumbnail">
-                                            <img class="img-responsive" src="images/committee/02baoan.jpg"/>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4>
-                                        <a href="http://www.tamuc.edu/academics/colleges/scienceEngineeringAgriculture/departments/physicsAstronomy/facultyStaff/drBaoAnLi.aspx">
-                                            Bao-An Li
-                                        </a></h4>
-                                    <p>Texas A&M University-Commerce</p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <a href="http://fias.uni-frankfurt.de/~liqf/">
-                                        <div class="thumbnail person-thumbnail">
-                                            <img class="img-responsive" src="images/committee/03qingfeng.jpg"/>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4><a href="http://fias.uni-frankfurt.de/~liqf/">Qingfeng Li</a></h4>
-                                    <p><strong>Chair</strong>, Huzhou University</p>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <a href="http://www.phys-hutc.net/people/LiuYanxin.htm">
-                                        <div class="thumbnail person-thumbnail">
-                                            <img class="img-responsive" src="images/committee/04yanxin.jpg"/>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4><a href="http://www.phys-hutc.net/people/LiuYanxin.htm">Yanxin Liu</a></h4>
-                                    <p>Huzhou University</p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="thumbnail person-thumbnail">
-                                        <img class="img-responsive" src="images/committee/05caiwan.jpg"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4>Caiwan Shen</h4>
-                                    <p>Huzhou University</p>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <a href="http://www.phy.pku.edu.cn/~frxu/professor.html">
-                                        <div class="thumbnail person-thumbnail">
-                                            <img class="img-responsive" src="images/committee/06furong.jpg"/>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4><a href="http://www.phy.pku.edu.cn/~frxu/professor.html">Furong Xu</a></h4>
-                                    <p>Peking University</p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <a href="http://www.phy.pku.edu.cn/personnel/dtp/yeyl.xml">
-                                        <div class="thumbnail person-thumbnail">
-                                            <img class="img-responsive" src="images/committee/07yanlin.jpg"/>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4><a href="http://www.phy.pku.edu.cn/personnel/dtp/yeyl.xml">Yanlin Ye</a>
-                                    </h4>
-                                    <p>Peking University</p>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <a href="http://www.phys-hutc.net/people/YuShaoying.htm">
-                                        <div class="thumbnail person-thumbnail">
-                                            <img class="img-responsive" src="images/committee/08shaoying.jpg"/>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4><a href="http://www.phys-hutc.net/people/YuShaoying.htm">
-                                        Shaoying Yu</a></h4>
-                                    <p>Huzhou University</p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <a href="http://mse.bnu.edu.cn/hkxyweb/zhangfengshou.htm">
-                                        <div class="thumbnail person-thumbnail">
-                                            <img class="img-responsive" src="images/committee/09fengshou.jpg"/>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4><a href="http://mse.bnu.edu.cn/hkxyweb/zhangfengshou.htm">
-                                        Fengshou Zhang</a></h4>
-                                    <p>Beijing Normal University</p>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <a href="http://www.imp.cas.cn/rcjy/brjh/zxh/201110/t20111029_3386976.html">
-                                        <div class="thumbnail person-thumbnail">
-                                            <img class="img-responsive" src="images/committee/10xiaohong.jpg"/>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4><a href="http://www.imp.cas.cn/rcjy/brjh/zxh/201110/t20111029_3386976.html">
-                                        Xiaohong Zhou</a></h4>
-                                    <p>Institute of Modern Physics, Chinese Academy of Science</p>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <h4><a href="https://people.nscl.msu.edu/~daniel/home.html">
+                        Pawel Danielewicz</a></h4>
+                    <p>Michigan State University</p>
                 </div>
 
-                <div class="section-header">
-                    <h3>Sponsors</h3>
+                <div class="col-md-2">
+                    <a href="http://www.tamuc.edu/academics/colleges/scienceEngineeringAgriculture/departments/physicsAstronomy/facultyStaff/drBaoAnLi.aspx">
+                        <div class="thumbnail person-thumbnail">
+                            <img class="img-responsive"
+                                 src="{{ url_for('static', filename='images/committee/02baoan.jpg') }}"/>
+                        </div>
+                    </a>
                 </div>
-
-                <div class="section-content sponsors">
-                    <div class="row ">
-                        <div class="col-md-6">
-                            <a href="http://www.hutc.zj.cn/english">
-                                <div class="thumbnail">
-                                    <img class="img-responsive" src="images/hzulogo.png"/>
-                                    <div class="caption">Huzhou University (H.U.)</div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-md-6">
-                            <a href="http://english.pku.edu.cn/">
-                                <div class="thumbnail">
-                                    <img class="img-responsive" src="images/pkulogo_red.png"/>
-                                    <div class="caption">Peking University (PKU)</div>
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a href="http://www.ccast.ac.cn">
-                                <div class="thumbnail">
-                                    <img class="img-responsive" src="images/ccastlogo.jpg"/>
-                                    <div class="caption">China Center of Advanced Science and Technology (CCAST)
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="http://english.bnu.edu.cn/">
-                                <div class="thumbnail">
-                                    <img class="img-responsive" src="images/bnulogo.jpg"/>
-                                    <div class="caption">Beijing Normal University (BNU)</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a href="http://english.imp.cas.cn/">
-                                <div class="thumbnail">
-                                    <img class="img-responsive" src="images/implogo.png"/>
-                                    <div class="caption">Institute of Modern Physics (IMP) Chinese Academy of
-                                        Sciences
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="footer">
-                    <div class="text-center">
-                        <hr/>
-                        &copy; 2017, CUSTIPEN, Peking University.
-                    </div>
+                <div class="col-md-4">
+                    <h4>
+                        <a href="http://www.tamuc.edu/academics/colleges/scienceEngineeringAgriculture/departments/physicsAstronomy/facultyStaff/drBaoAnLi.aspx">
+                            Bao-An Li
+                        </a></h4>
+                    <p>Texas A&M University-Commerce</p>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="http://fias.uni-frankfurt.de/~liqf/">
+                        <div class="thumbnail person-thumbnail">
+                            <img class="img-responsive"
+                                 src="{{ url_for('static', filename='images/committee/03qingfeng.jpg') }}"/>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <h4><a href="http://fias.uni-frankfurt.de/~liqf/">Qingfeng Li</a></h4>
+                    <p><strong>Chair</strong>, Huzhou University</p>
+                </div>
+
+                <div class="col-md-2">
+                    <a href="http://www.phys-hutc.net/people/LiuYanxin.htm">
+                        <div class="thumbnail person-thumbnail">
+                            <img class="img-responsive"
+                                 src="{{ url_for('static', filename='images/committee/04yanxin.jpg') }}"/>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <h4><a href="http://www.phys-hutc.net/people/LiuYanxin.htm">Yanxin Liu</a></h4>
+                    <p>Huzhou University</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="thumbnail person-thumbnail">
+                        <img class="img-responsive"
+                             src="{{ url_for('static', filename='images/committee/05caiwan.jpg') }}"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h4>Caiwan Shen</h4>
+                    <p>Huzhou University</p>
+                </div>
+
+                <div class="col-md-2">
+                    <a href="http://www.phy.pku.edu.cn/~frxu/professor.html">
+                        <div class="thumbnail person-thumbnail">
+                            <img class="img-responsive"
+                                 src="{{ url_for('static', filename='images/committee/06furong.jpg') }}"/>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <h4><a href="http://www.phy.pku.edu.cn/~frxu/professor.html">Furong Xu</a></h4>
+                    <p>Peking University</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="http://www.phy.pku.edu.cn/personnel/dtp/yeyl.xml">
+                        <div class="thumbnail person-thumbnail">
+                            <img class="img-responsive"
+                                 src="{{ url_for('static', filename='images/committee/07yanlin.jpg') }}"/>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <h4><a href="http://www.phy.pku.edu.cn/personnel/dtp/yeyl.xml">Yanlin Ye</a>
+                    </h4>
+                    <p>Peking University</p>
+                </div>
+
+                <div class="col-md-2">
+                    <a href="http://www.phys-hutc.net/people/YuShaoying.htm">
+                        <div class="thumbnail person-thumbnail">
+                            <img class="img-responsive"
+                                 src="{{ url_for('static', filename='images/committee/08shaoying.jpg') }}"/>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <h4><a href="http://www.phys-hutc.net/people/YuShaoying.htm">
+                        Shaoying Yu</a></h4>
+                    <p>Huzhou University</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="http://mse.bnu.edu.cn/hkxyweb/zhangfengshou.htm">
+                        <div class="thumbnail person-thumbnail">
+                            <img class="img-responsive"
+                                 src="{{ url_for('static', filename='images/committee/09fengshou.jpg') }}"/>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <h4><a href="http://mse.bnu.edu.cn/hkxyweb/zhangfengshou.htm">
+                        Fengshou Zhang</a></h4>
+                    <p>Beijing Normal University</p>
+                </div>
+
+                <div class="col-md-2">
+                    <a href="http://www.imp.cas.cn/rcjy/brjh/zxh/201110/t20111029_3386976.html">
+                        <div class="thumbnail person-thumbnail">
+                            <img class="img-responsive"
+                                 src="{{ url_for('static', filename='images/committee/10xiaohong.jpg') }}"/>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <h4><a href="http://www.imp.cas.cn/rcjy/brjh/zxh/201110/t20111029_3386976.html">
+                        Xiaohong Zhou</a></h4>
+                    <p>Institute of Modern Physics, Chinese Academy of Science</p>
+                </div>
+
+            </div>
         </div>
+
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="js/npm.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>
-</body>
-</html>
+<div class="section-header">
+    <h3>Sponsors</h3>
+</div>
+
+<div class="section-content sponsors">
+    <div class="row ">
+        <div class="col-md-6">
+            <a href="http://www.hutc.zj.cn/english">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="{{ url_for('static', filename='images/hzulogo.png') }}"/>
+                    <div class="caption">Huzhou University (H.U.)</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="http://english.pku.edu.cn/">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="{{ url_for('static', filename='images/pkulogo_red.png') }}"/>
+                    <div class="caption">Peking University (PKU)</div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="http://www.ccast.ac.cn">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="{{ url_for('static', filename='images/ccastlogo.jpg') }}"/>
+                    <div class="caption">China Center of Advanced Science and Technology (CCAST)
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="http://english.bnu.edu.cn/">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="{{ url_for('static', filename='images/bnulogo.jpg') }}"/>
+                    <div class="caption">Beijing Normal University (BNU)</div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="http://english.imp.cas.cn/">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="{{ url_for('static', filename='images/implogo.png') }}"/>
+                    <div class="caption">Institute of Modern Physics (IMP) Chinese Academy of
+                        Sciences
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
 

@@ -1,10 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{{ subtitle }} | Huzhou-CUSTIPEN Workshop 2017</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/stylesheet.css') }}" rel="stylesheet">
+
 </head>
+
 <body>
-$END$
+
+<div class="container main-container">
+    <div class="header">
+        <h1>Huzhou-CUSTIPEN Workshop 2017</h1>
+        <div class="row">
+            <div class="col-md-6 col-lg-5">
+                <h2>
+                    On Spectroscopy and Reactions of Exotic Nuclei
+                    <div style="height: 0.5em;"></div>
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    Jul 3 - 9, 2017
+                    <span style="width: 1em; display: inline-block;"></span>
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                    Huzhou, Zhejiang, China
+                </h2>
+            </div>
+            <div class="col-md-2 col-lg-2" style="margin-top: 20px;">
+                <a href="./register.html">
+                    <button class="btn btn-lg btn-default hidden-sm hidden-xs">Register Now</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    {% set navigation_bar = [
+    ('/', 'index', 'Index'),
+    ('/committee/', 'committee', 'Committee'),
+    ('/program/', 'program', 'Program'),
+    ('/register/', 'register', 'Register'),
+    ('/travel/', 'travel', 'Travel Info'),
+    ('/photos/', 'photos', 'Photos'),
+    ('/presentation/', 'presentation', 'Presentation')
+    ] -%}
+
+    {% set active_page = active |default('index') -%}
+    {% include 'navbar-top.html' %}
+
+    <div class="row main-content">
+        <div class="col-md-3 hidden-xs hidden-sm">
+            {% include 'navbar-left.html' %}
+        </div>
+
+
+        <div class="col-md-9">
+            <div class="content-container">
+
+                {% block body %} {% endblock %}
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="text-center">
+            <hr/>
+            &copy; 2017, CUSTIPEN, Peking University.
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{{ url_for('static', filename='js/npm.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
 </body>
 </html>
+

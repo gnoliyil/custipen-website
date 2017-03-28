@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="navbar navbar-default visible-sm visible-xs" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target=".sidebar-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <span class="visible-xs navbar-brand">Huzhou CUSTIPEN Workshop 2017</span>
+    </div>
+    <div class="navbar-collapse collapse sidebar-navbar-collapse">
+        <ul class="nav navbar-nav nav-">
+            {% for href, id, caption in navigation_bar %}
+            <li{% if id == active_page %} class="active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="./edit">My Submission</a></li>
+        </ul>
+    </div><!--/.nav-collapse -->
+</div>

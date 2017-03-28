@@ -1,233 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Huzhou-CUSTIPEN Workshop 2017</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!--link href="css/bootstrap-theme.css" rel="stylesheet"-->
-    <link href="css/stylesheet.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-<div class="container main-container">
-    <div class="header">
-        <h1>Huzhou-CUSTIPEN Workshop 2017</h1>
-        <div class="row">
-            <div class="col-md-6 col-lg-5">
-                <h2>
-                    On Spectroscopy and Reactions of Exotic Nuclei
-                    <div style="height: 0.5em;"></div>
-                    <span class="glyphicon glyphicon-calendar"></span>
-                    Jul 3 - 9, 2017
-                    <span style="width: 1em; display: inline-block;"></span>
-                    <span class="glyphicon glyphicon-map-marker"></span>
-                    Huzhou, Zhejiang, China
-                </h2>
+{% extends 'layout.html' %}
+{% set subtitle = "Home" %}
+{% block body %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Announcement
             </div>
-            <div class="col-md-2 col-lg-2" style="margin-top: 20px;">
-                <a href="./register.html">
-                    <button class="btn btn-lg btn-default hidden-sm hidden-xs">Register Now</button>
-                </a>
+            <div class="panel-body">
+                Latest announcement here
             </div>
         </div>
     </div>
-
-    <div class="navbar navbar-default visible-sm visible-xs" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target=".sidebar-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <span class="visible-xs navbar-brand">Huzhou CUSTIPEN Workshop 2017</span>
-        </div>
-        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-            <ul class="nav navbar-nav nav-">
-                <li><a href="./">Index</a></li>
-                <li><a href="./committee.html">Committees</a></li>
-                <li><a href="./program.html">Program</a></li>
-                <li><a href="./register.html">Registration</a></li>
-                <li class="active"><a href="./travel.html">Travel Info</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="./management.html">My Submission</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-
-    <div class="row main-content">
-        <div class="col-md-3 hidden-xs hidden-sm">
-            <ul class="nav nav-pills nav-pills nav-stacked">
-                <li class="active"><a href="./">Index</a></li>
-                <li><a href="./committee.html">Committees</a></li>
-                <li><a href="./program.html">Program</a></li>
-                <li><a href="./register.html">Registration</a></li>
-                <li><a href="./travel.html">Travel Info</a></li>
-                <div class="nav-divider"></div>
-                <li><a href="./management.html">My Submission</a></li>
-
-            </ul>
-
-        </div>
-
-
-        <div class="col-md-9">
-            <div class="content-container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                Announcement
-                            </div>
-                            <div class="panel-body">
-                                Latest announcement here
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-header">
-                            <h3>Introduction</h3>
-                        </div>
-
-                        <div class="text-center" style="padding-bottom:15px;">
-                            <img class="img-thumbnail" src="images/huzhou.jpg"/>
-                        </div>
-
-                        <div class="section-content">
-                            <p class="text-info"><strong>The China-U.S. Theory Institute for Physics with Exotic
-                                Nuclei (CUSTIPEN), Huzhou University (H.U.) will organize the
-                                Huzhou- CUSTIPEN Workshop on Spectroscopy and Reactions of
-                                Exotic Nuclei, taking place from July. 3 to 9, 2017 in Huzhou,
-                                Zhejiang, China.</strong></p>
-                            <p>
-                                Established in May, 2013, CUSTIPEN has been playing the role of
-                                nurturing collaborations between U.S. and Chinese scientists in
-                                pursuit of a basic understanding of exotic nuclei and of their
-                                functions in astrophysics and other areas. </p>
-
-                            <p>
-                                Following the history of CUSTIPEN workshops, the main purpose of
-                                this meeting is to bring together theorists and experimentalists
-                                with interests in the physics of radioactive nuclei to review
-                                recent progress, exchange ideas and build collaborations to tackle
-                                new challenges of the field. We wish to continue exploring various
-                                forms of collaborative endeavors in theories and experiments relevant
-                                to the science programs to be carried out at various rare isotope
-                                beam facilities around the world. Physicists from all countries
-                                are welcomed to attend this workshop.
-                            </p>
-                            <p><strong>Deadline of registration: May 1st, 2017</strong></p>
-                            <div class="btn btn-primary btn-block btn-lg">Register Now</div>
-                        </div>
-
-                        <div class="section-header">
-                            <h3>Topics</h3>
-                        </div>
-
-                        <div class="section-content">
-                            <p>1. Spectroscopy of unstable nuclei</p>
-                            <p>2. Gamma-ray spectra induced by fission/fusion </p>
-                            <p>3. Advanced models for nuclear spectroscopy </p>
-                            <p>4. Heavy-ion collisions with neutron-rich beams</p>
-                            <p>5. Synthesis of super-heavy elements</p>
-                        </div>
-
-                        <div class="section-header">
-                            <h3>Sponsors</h3>
-                        </div>
-
-
-                        <div class="section-content sponsors">
-                            <div class="row ">
-                                <div class="col-md-6">
-                                    <a href="http://www.hutc.zj.cn/english">
-                                        <div class="thumbnail">
-                                            <img class="img-responsive" src="images/hzulogo.png"/>
-                                            <div class="caption">Huzhou University (H.U.)</div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <a href="http://english.pku.edu.cn/">
-                                        <div class="thumbnail">
-                                            <img class="img-responsive" src="images/pkulogo_red.png"/>
-                                            <div class="caption">Peking University (PKU)</div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <a href="http://www.ccast.ac.cn">
-                                        <div class="thumbnail">
-                                            <img class="img-responsive" src="images/ccastlogo.jpg"/>
-                                            <div class="caption">China Center of Advanced Science and Technology
-                                                (CCAST)
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="http://english.bnu.edu.cn/">
-                                        <div class="thumbnail">
-                                            <img class="img-responsive" src="images/bnulogo.jpg"/>
-                                            <div class="caption">Beijing Normal University (BNU)</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <a href="http://english.imp.cas.cn/">
-                                        <div class="thumbnail">
-                                            <img class="img-responsive" src="images/implogo.png"/>
-                                            <div class="caption">Institute of Modern Physics (IMP) Chinese Academy of
-                                                Sciences
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="footer">
-                    <div class="text-center">
-                        <hr/>
-                        &copy; 2017, CUSTIPEN, Peking University.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
 </div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="js/npm.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>
-</body>
-</html>
 
+<div class="row">
+    <div class="col-md-12">
+        <div class="section-header">
+            <h3>Introduction</h3>
+        </div>
+
+        <div class="text-center" style="padding-bottom:15px;">
+            <img class="img-thumbnail" src="{{ url_for('static', filename='images/huzhou.jpg') }}"/>
+        </div>
+
+        <div class="section-content">
+            <p class="text-info"><strong>The China-U.S. Theory Institute for Physics with Exotic
+                Nuclei (CUSTIPEN), Huzhou University (H.U.) will organize the
+                Huzhou- CUSTIPEN Workshop on Spectroscopy and Reactions of
+                Exotic Nuclei, taking place from July. 3 to 9, 2017 in Huzhou,
+                Zhejiang, China.</strong></p>
+            <p>
+                Established in May, 2013, CUSTIPEN has been playing the role of
+                nurturing collaborations between U.S. and Chinese scientists in
+                pursuit of a basic understanding of exotic nuclei and of their
+                functions in astrophysics and other areas. </p>
+
+            <p>
+                Following the history of CUSTIPEN workshops, the main purpose of
+                this meeting is to bring together theorists and experimentalists
+                with interests in the physics of radioactive nuclei to review
+                recent progress, exchange ideas and build collaborations to tackle
+                new challenges of the field. We wish to continue exploring various
+                forms of collaborative endeavors in theories and experiments relevant
+                to the science programs to be carried out at various rare isotope
+                beam facilities around the world. Physicists from all countries
+                are welcomed to attend this workshop.
+            </p>
+            <p><strong>Deadline of registration: May 1st, 2017</strong></p>
+            <div class="btn btn-primary btn-block btn-lg">Register Now</div>
+        </div>
+
+        <div class="section-header">
+            <h3>Topics</h3>
+        </div>
+
+        <div class="section-content">
+            <p>1. Spectroscopy of unstable nuclei</p>
+            <p>2. Gamma-ray spectra induced by fission/fusion </p>
+            <p>3. Advanced models for nuclear spectroscopy </p>
+            <p>4. Heavy-ion collisions with neutron-rich beams</p>
+            <p>5. Synthesis of super-heavy elements</p>
+        </div>
+
+        <div class="section-header">
+            <h3>Sponsors</h3>
+        </div>
+
+
+        <div class="section-content sponsors">
+            <div class="row ">
+                <div class="col-md-6">
+                    <a href="http://www.hutc.zj.cn/english">
+                        <div class="thumbnail">
+                            <img class="img-responsive" src="{{ url_for('static', filename='images/hzulogo.png') }}"/>
+                            <div class="caption">Huzhou University (H.U.)</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6">
+                    <a href="http://english.pku.edu.cn/">
+                        <div class="thumbnail">
+                            <img class="img-responsive" src="{{ url_for('static', filename='images/pkulogo_red.png') }}"/>
+                            <div class="caption">Peking University (PKU)</div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="http://www.ccast.ac.cn">
+                        <div class="thumbnail">
+                            <img class="img-responsive" src="{{ url_for('static', filename='images/ccastlogo.jpg') }}"/>
+                            <div class="caption">China Center of Advanced Science and Technology
+                                (CCAST)
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="http://english.bnu.edu.cn/">
+                        <div class="thumbnail">
+                            <img class="img-responsive" src="{{ url_for('static', filename='images/bnulogo.jpg') }}"/>
+                            <div class="caption">Beijing Normal University (BNU)</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="http://english.imp.cas.cn/">
+                        <div class="thumbnail">
+                            <img class="img-responsive" src="{{ url_for('static', filename='images/implogo.png') }}"/>
+                            <div class="caption">Institute of Modern Physics (IMP) Chinese Academy of
+                                Sciences
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
