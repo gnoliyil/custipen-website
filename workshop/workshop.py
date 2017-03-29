@@ -81,14 +81,12 @@ PHOTO_PER_PAGE = 18
 @app.route('/photos/<int:page>/')
 def photos(page):
     db = get_db()
-    print type(page)
     count = db.execute('SELECT COUNT(*) as cnt FROM photo;').fetchone()['cnt']
     cur = db.execute('SELECT url, caption FROM photo ORDER BY `order`'
                      'LIMIT ? OFFSET ?', (PHOTO_PER_PAGE, (page - 1) * PHOTO_PER_PAGE))
     entries = cur.fetchall()
 
     pagination = Pagination(page, PHOTO_PER_PAGE, count)
-    print pagination.page
     return render_template('photos.html', active="photos",
                            pagination=pagination, entries=entries)
 
@@ -102,7 +100,6 @@ def register():
         # check captcha
         captcha = request.form['auth_code']
         answer = session['chars']
-        print captcha, ' ', answer
         correct = (answer and
                    ''.join(answer).capitalize() == captcha.capitalize()) \
                   and 1 or 0
@@ -118,11 +115,8 @@ def register():
                                    error_msg='This email has been already registered, '
                                              'please log-in to modify your information.')
         else:
-            print request.files
             if request.files:
-                print request.files
                 file = request.files['talk_file']
-                print file.filename
 
                 if (not file.filename.endswith('.pdf')):
                     return render_template('register.html', active=register,
@@ -137,7 +131,6 @@ def register():
             else:
                 talk_url = ''
 
-            print 'here'
             cur = db.execute(
                 'INSERT INTO users (first_name, last_name, email, institution, dob, address, '
                 'arrival_time, departure_time, is_talk, talk_title, talk_url, '
@@ -148,16 +141,12 @@ def register():
                     form['first_name'], form['last_name'], form['email'],
                     form['institution'], form['dob'], form['address'], form['arrival_time'],
                     form['departure_time'], int(form['is_talk']), form['talk_title'],
-                    talk_url, form['visa_name'], form['visa_citizenship'],
-                    form['visa_gender'], form['visa_passport_number'], form['visa_dob'], form['visa_relation'],
-                    form['visa_dep_name'], form['visa_dep_citizenship'], form['visa_dep_gender'],
-                    form['visa_dep_passport_number'], form['visa_dep_dob'], datetime.datetime.now().isoformat()
-            ))
-            print 'here'
-            print cur
+                    filename, form['visa_fullname'], form['visa_citizenship'],
+                    form['visa_gender'], form['visa_passport_id'], form['visa_dob'], form['visa_relation'],
+                    form['visa_dep_fullname'], form['visa_dep_citizenship'], form['visa_dep_gender'],
+                    form['visa_dep_passport_id'], form['visa_dep_dob'],datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            	))
             db.commit()
-
-            print cur.lastrowid
 
             session['logged_in'] = cur.lastrowid
             return redirect(url_for('home'))
@@ -217,9 +206,9 @@ def edit():
                 form['institution'], form['dob'], form['address'], form['arrival_time'],
                 form['departure_time'], form['is_talk'], form['talk_title'],
                 form['visa_fullname'], form['visa_citizenship'],
-                form['visa_gender'], form['visa_passport_number'], form['visa_dob'], form['visa_relation'],
+                form['visa_gender'], form['visa_passport_id'], form['visa_dob'], form['visa_relation'],
                 form['visa_dep_fullname'], form['visa_dep_citizenship'], form['visa_dep_gender'],
-                form['visa_dep_passport_number'], form['visa_dep_dob'], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                form['visa_dep_passport_id'], form['visa_dep_dob'], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 user_id
             )
         )
@@ -265,7 +254,6 @@ def login():
             first_name = request.form['first_name'].strip().upper()
             last_name  = request.form['last_name'].strip().upper()
             dob   = request.form['dob']
-            print first_name, last_name, dob
 
             # check captcha
             captcha = request.form['auth_code']
@@ -302,7 +290,7 @@ def participants():
 @app.route('/admin/login', methods=['POST', 'GET'])
 def admin_login():
     if session.get('admin_logged_in'):
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('user_info'))
     else:
         if request.method == 'POST':
             username = request.form['username']
@@ -335,9 +323,9 @@ def admin_logout():
 
 
 USER_INFO_PER_PAGE = 20
-@app.route('/admin/', defaults={'page': 1})
 @app.route('/admin/users/', defaults={'page': 1})
 @app.route('/admin/users/page/<int:page>')
+@app.route('/admin/', defaults={'page': 1})
 def user_info(page):
     if not session.get('admin_logged_in'):
         return redirect(url_for('admin_login'))
@@ -407,9 +395,9 @@ def edit_user(id):
                 form['institution'], form['dob'], form['address'], form['arrival_time'],
                 form['departure_time'], form['is_talk'], form['talk_title'],
                 form['visa_fullname'], form['visa_citizenship'],
-                form['visa_gender'], form['visa_passport_number'], form['visa_dob'], form['visa_relation'],
+                form['visa_gender'], form['visa_passport_id'], form['visa_dob'], form['visa_relation'],
                 form['visa_dep_fullname'], form['visa_dep_citizenship'], form['visa_dep_gender'],
-                form['visa_dep_passport_number'], form['visa_dep_dob'], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                form['visa_dep_passport_id'], form['visa_dep_dob'], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 user_id
             )
         )
