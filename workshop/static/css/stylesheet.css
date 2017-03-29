@@ -157,3 +157,7 @@ h3.unactivated {
     margin-top: 100px;
     margin-bottom: 50px;
 }
+
+.col-form-label {
+    padding-top: 0.5em;
+}
