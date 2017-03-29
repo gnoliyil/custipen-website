@@ -1,0 +1,80 @@
+{% extends 'admin/layout.html' %}
+{% set subtitle="Edit Gallery" %}
+{% set active="gallery" %}
+{% block body %}
+
+<h2 class="sub-header">Edit Gallery</h2>
+<h3 class="sub-header">
+    Upload Photo
+</h3>
+<form class="form-horizontal" enctype="multipart/form-data" action="{{ url_for('photo_upload') }}" method="POST">
+    <div class="form-group row">
+        <label for="image_file" class="col-md-2 control-label">Image File</label>
+        <div class="col-md-10">
+            <input class="" type="file" value="" name="image_file" id="image_file">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="caption" class="col-md-2 control-label">Caption</label>
+        <div class="col-md-10">
+            <input class="form-control" type="text" value="" name="caption"
+                   id="caption"
+                   placeholder="Caption">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-offset-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+
+</form>
+
+<h3 class="sub-header">
+    Edit Photo Information
+</h3>
+<div class="">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Image Name</th>
+            <th>Caption</th>
+            <th>Move</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry['idx'] }}</td>
+            <td><a href="{{ url_for('uploaded_file', filename=entry['url']) }}">
+                {{ entry['url'] }}
+            </a></td>
+            <td>{{ entry['caption'] }}</td>
+            <td>{% if entry['idx'] > 1 %}
+                <a href="{{ url_for('photo_move_up', id=entry['id']) }}">
+                    <span class="glyphicon glyphicon-arrow-up"></span>
+                </a>
+                {% endif %}
+                {% if entry['idx'] < entries|length %}
+                <a href="{{ url_for('photo_move_down', id=entry['id']) }}">
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                </a>
+                {% endif %}
+            </td>
+            <td>
+                <a href="{{ url_for('photo_delete', id=entry['id']) }}"
+                   onclick="return confirm('Are you sure you want to delete this item?');">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

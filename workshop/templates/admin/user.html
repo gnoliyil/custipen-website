@@ -1,0 +1,84 @@
+{% extends 'admin/layout.html' %}
+{% set subtitle="Users" %}
+{% set active="users" %}
+{% block body %}
+
+<h2 class="sub-header">User Information</h2>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr style="white-space: nowrap;">
+            <th>Delete?</th>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Institution</th>
+            <th>E-mail</th>
+            <th>Date of Birth</th>
+            <th>Arrival Time</th>
+            <th>Departure Time</th>
+            <th>Give Talk?</th>
+            <th>Talk Title</th>
+            <th>Talk File</th>
+            <th>Visa Fullname</th>
+            <th>Visa Citizenship</th>
+            <th>Visa Gender</th>
+            <th>Visa Passport ID</th>
+            <th>Visa DOB</th>
+            <th>Visa Relationship</th>
+            <th>Visa Fullname</th>
+            <th>Visa Citizenship</th>
+            <th>Visa Gender</th>
+            <th>Visa Passport ID</th>
+            <th>Visa DOB</th>
+            <th>Submit Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entry in entries %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('user_delete', id=entry['id']) }}"
+                       onclick="return confirm('Are you sure you want to delete this item?');">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </td>
+
+                {% for item in ['id', 'first_name', 'last_name', 'institution', 'email', 'dob', 'arrival_time',
+                   'departure_time', 'is_talk', 'talk_title', 'talk_url', 'visa_fullname', 'visa_citizenship',
+                   'visa_gender', 'visa_passport_id', 'visa_dob', 'visa_relation', 'visa_dep_fullname',
+                   'visa_dep_citizenship', 'visa_dep_gender', 'visa_dep_passport_id',
+                   'visa_dep_dob', 'submit_time'] %}
+                <td>{% if item == 'talk_url' %}
+                        <a href="{{ url_for('uploaded_file', filename=entry[item]) }}">Download</a>
+                    {% else %}
+                        {{ entry[item] }}
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <nav>
+        <ul class="pagination">
+            <li class="page-item {% if not pagination.has_prev %}disabled{% endif %}">
+                <a class="page-link" {% if pagination.has_prev %}
+                   href="{{ url_for('user_info', page=pagination.page - 1) }}"
+                {% endif %}>Previous</a>
+            </li>
+            <li class="page-item active">
+                <a class="page-link" href="{{ url_for('user_info', page=pagination.page) }}">{{pagination.page}}</a>
+            </li>
+            <li class="page-item {% if not pagination.has_next %}disabled{% endif %}">
+                <a class="page-link"
+                   {% if pagination.has_prev %}
+                   href="{{ url_for('user_info', page=pagination.page + 1) }}"
+               {% endif %}>Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+{% endblock %}

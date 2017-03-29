@@ -1,0 +1,22 @@
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('home') }}">CUSTIPEN Administration System</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('user_info') }}">Dashboard</a></li>
+                {% if session.get('admin_logged_in') %}
+                <li><a href="{{ url_for('admin_logout') }}">Log out</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
