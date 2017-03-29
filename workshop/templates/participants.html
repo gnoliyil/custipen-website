@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% set subtitle = "Participant List" %}
+{% block body %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="section-header">
+            <h3>Participant List</h3>
+        </div>
+
+        <div class="section-content">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th># </th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Institution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i, entry in enumerate(entries) %}
+                    <tr>
+                        <th>{{ i + 1 }}</th>
+                        <td>{{ entry['first_name'] }}</td>
+                        <td>{{ entry['last_name'] }}</td>
+                        <td>{{ entry['institution'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{%　endblock　%}

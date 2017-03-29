@@ -17,7 +17,14 @@
             {% endfor %}
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="./edit">My Submission</a></li>
+            {% if session.get('logged_in') %}
+                {% for href, id, caption in navigation_bar_2 %}
+                <li{% if id == active_page %} class="active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a>
+                </li>
+                {% endfor %}
+            {% else %}
+                <li{% if "login" == active_page %}　class="active"{% endif %}><a href="/login/">Login</a></li>
+            {% endif %}
         </ul>
     </div><!--/.nav-collapse -->
 </div>

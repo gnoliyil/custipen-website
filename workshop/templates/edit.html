@@ -1,6 +1,10 @@
 {% extends 'layout.html' %}
-{% set subtitle = "Register" %}
+{% set subtitle = "Edit Information" %}
 {% block body %}
+
+{% if not entry %}
+    {% set entry = request.form %}
+{% endif %}
 
 {% if error_msg %}
 <div class="row">
@@ -19,11 +23,10 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form class="form-horizontal" enctype="multipart/form-data" action="{{ url_for('register') }}" method="POST">
-            <div class="section-header">
-                <h3><a href="{{ url_for('participants') }}">Participants</a></h3>
-            </div>
-
+        <div class="section-header">
+            <h2>Edit My Information</h2>
+        </div>
+        <form class="form-horizontal" enctype="multipart/form-data" action="{{ url_for('edit') }}" method="POST">
             <div class="section-header">
                 <h3>Personal Info</h3>
             </div>
@@ -33,7 +36,7 @@
                     <label for="first_name" class="col-md-3 control-label"><span
                             class="text-danger">First Name *</span></label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['first_name'] }}"
+                        <input class="form-control" type="text" value="{{ entry['first_name'] }}"
                                name="first_name" id="first_name"
                                placeholder="First name">
                     </div>
@@ -42,7 +45,7 @@
                     <label for="last_name" class="col-md-3 control-label"><span
                             class="text-danger">Last Name *</span></label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['last_name'] }}" name="last_name"
+                        <input class="form-control" type="text" value="{{ entry['last_name'] }}" name="last_name"
                                id="last_name"
                                placeholder="Last name">
                     </div>
@@ -51,7 +54,7 @@
                 <div class="form-group row">
                     <label for="email" class="col-md-3 control-label"><span class="text-danger">E-mail *</span></label>
                     <div class="col-md-9">
-                        <input class="form-control" type="email" value="{{ request.form['email'] }}" name="email"
+                        <input class="form-control" type="email" value="{{ entry['email'] }}" name="email"
                                id="email" placeholder="E-mail address">
                     </div>
                 </div>
@@ -61,7 +64,7 @@
                     <label for="institution" class="col-md-3 control-label"><span
                             class="text-danger">Institution *</span></label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['institution'] }}"
+                        <input class="form-control" type="text" value="{{ entry['institution'] }}"
                                name="institution" id="institution"
                                placeholder="Institution">
                     </div>
@@ -72,7 +75,7 @@
                             class="text-danger">Date of Birth *</span></label>
                     <div class="col-md-9 ">
                         <div class="date datepicker">
-                            <input class="form-control" type="text" value="{{ request.form['dob'] }}" name="dob"
+                            <input class="form-control" type="text" value="{{ entry['dob'] }}" name="dob"
                                    id="dob" placeholder="Date of Birth">
                         </div>
                     </div>
@@ -81,7 +84,7 @@
                 <div class="form-group row">
                     <label for="arrival_time" class="col-md-3 control-label">Address</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['address'] }}" name="address"
+                        <input class="form-control" type="text" value="{{ entry['address'] }}" name="address"
                                id="address"
                                placeholder="Address">
                     </div>
@@ -91,7 +94,7 @@
                     <label for="arrival_time" class="col-md-3 control-label">Arrival Time</label>
                     <div class="col-md-9 ">
                         <div class="date datepicker">
-                            <input class="form-control" type="text" value="{{ request.form['arrival_time'] }}"
+                            <input class="form-control" type="text" value="{{ entry['arrival_time'] }}"
                                    name="arrival_time" id="arrival_time"
                                    placeholder="Arrival Time">
                         </div>
@@ -103,7 +106,7 @@
                     <label for="departure_time" class="col-md-3 control-label">Departure Time</label>
                     <div class="col-md-9 ">
                         <div class="date datepicker">
-                            <input class="form-control" type="text" value="{{ request.form['departure_time'] }}"
+                            <input class="form-control" type="text" value="{{ entry['departure_time'] }}"
                                    name="departure_time" id="departure_time"
                                    placeholder="Departure Time">
                         </div>
@@ -123,11 +126,11 @@
                     <div class="col-md-9">
                         <label class="radio-inline">
                             <input class="form-check-input" type="radio" name="is_talk" id="is_talk1" value="1"
-                                   checked="{{ request.form['is_talk'] and 'true' or 'false' }}"> Yes
+                                   checked="{{ entry['is_talk'] and 'true' or 'false' }}"> Yes
                         </label>
                         <label class="radio-inline">
                             <input class="form-check-input" type="radio" name="is_talk" id="is_talk" value="0"
-                                   checked="{{ request.form['is_talk'] and 'false' or 'true' }}"> No
+                                   checked="{{ entry['is_talk'] and 'false' or 'true' }}"> No
                         </label>
                     </div>
                 </div>
@@ -135,12 +138,25 @@
                 <div class="form-group row">
                     <label for="talk_title" class="col-md-3 control-label">Talk Title</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['talk_title'] }}"
+                        <input class="form-control" type="text" value="{{ entry['talk_title'] }}"
                                name="talk_title" id="talk_title"
                                placeholder="Talk Title">
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <label for="is_new_file" class="col-md-3 control-label">Upload New File?</label>
+                    <div class="col-md-9">
+                        <label class="radio-inline">
+                            <input class="form-check-input" type="radio" name="is_new_file" id="is_new_file1" value="1"
+                                   checked="{{ entry.get('is_new_file') and 'true' or 'false' }}"> Yes
+                        </label>
+                        <label class="radio-inline">
+                            <input class="form-check-input" type="radio" name="is_new_file" id="is_new_file" value="0"
+                                   checked="{{ entry.get('is_new_file') and 'false' or 'true' }}"> No
+                        </label>
+                    </div>
+                </div>
 
                 <div class="form-group row">
                     <label for="talk_file" class="col-md-3 control-label">Abstract File</label>
@@ -166,7 +182,7 @@
                 <div class="form-group row">
                     <label for="visa_fullname" class="col-md-3 control-label">Full Name</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['visa_fullname'] }}" name="visa_fullname"
+                        <input class="form-control" type="text" value="{{ entry['visa_fullname'] }}" name="visa_fullname"
                                id="visa_fullname"
                                placeholder="Name on the passport">
                     </div>
@@ -175,7 +191,7 @@
                 <div class="form-group row">
                     <label for="visa_citizenship" class="col-md-3 control-label">Citizenship</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['visa_citizenship'] }}"
+                        <input class="form-control" type="text" value="{{ entry['visa_citizenship'] }}"
                                name="visa_citizenship" id="visa_citizenship"
                                placeholder="Citizenship on the passport">
                     </div>
@@ -184,7 +200,7 @@
                 <div class="form-group row">
                     <label for="visa_gender" class="col-md-3 control-label">Gender</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['visa_gender'] }}"
+                        <input class="form-control" type="text" value="{{ entry['visa_gender'] }}"
                                name="visa_gender" id="visa_gender"
                                placeholder="Gender on the passport">
                     </div>
@@ -193,7 +209,7 @@
                 <div class="form-group row">
                     <label for="visa_passport_id" class="col-md-3 control-label">Passport Number</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['visa_passport_id'] }}"
+                        <input class="form-control" type="text" value="{{ entry['visa_passport_id'] }}"
                                name="visa_passport_id"
                                id="visa_passport_id"
                                placeholder="Passport Number">
@@ -204,7 +220,7 @@
                     <label for="visa_dob" class="col-md-3 control-label">Date of Birth</label>
                     <div class="col-md-9 ">
                         <div class="date datepicker">
-                            <input class="form-control" type="text" value="{{ request.form['visa_dob'] }}"
+                            <input class="form-control" type="text" value="{{ entry['visa_dob'] }}"
                                    name="visa_dob"
                                    id="visa_dob"
                                    placeholder="Date of Birth">
@@ -219,7 +235,7 @@
                 <div class="form-group row">
                     <label for="visa_relation" class="col-md-3 control-label">Relation with You</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['visa_relation'] }}"
+                        <input class="form-control" type="text" value="{{ entry['visa_relation'] }}"
                                name="visa_relation" id="visa_relation"
                                placeholder="Spouse, or ...">
                     </div>
@@ -228,7 +244,7 @@
                 <div class="form-group row">
                     <label for="visa_dep_fullname" class="col-md-3 control-label">Full Name</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['visa_dep_fullname'] }}"
+                        <input class="form-control" type="text" value="{{ entry['visa_dep_fullname'] }}"
                                name="visa_dep_fullname" id="visa_dep_fullname"
                                placeholder="Name on the passport">
                     </div>
@@ -237,7 +253,7 @@
                 <div class="form-group row">
                     <label for="visa_dep_citizenship" class="col-md-3 control-label">Citizenship</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['visa_dep_citizenship'] }}"
+                        <input class="form-control" type="text" value="{{ entry['visa_dep_citizenship'] }}"
                                name="visa_dep_citizenship"
                                id="visa_dep_citizenship"
                                placeholder="Citizenship on the passport">
@@ -247,7 +263,7 @@
                 <div class="form-group row">
                     <label for="visa_dep_gender" class="col-md-3 control-label">Gender</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['visa_dep_gender'] }}"
+                        <input class="form-control" type="text" value="{{ entry['visa_dep_gender'] }}"
                                name="visa_dep_gender" id="visa_dep_gender"
                                placeholder="Gender on the passport">
                     </div>
@@ -256,7 +272,7 @@
                 <div class="form-group row">
                     <label for="visa_dep_passport_id" class="col-md-3 control-label">Passport Number</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" value="{{ request.form['visa_dep_passport_id'] }}"
+                        <input class="form-control" type="text" value="{{ entry['visa_dep_passport_id'] }}"
                                name="visa_dep_passport_id"
                                id="visa_dep_passport_id"
                                placeholder="Passport Number">
@@ -267,7 +283,7 @@
                     <label for="visa_dep_dob" class="col-md-3 control-label">Date of Birth</label>
                     <div class="col-md-9 ">
                         <div class="date datepicker">
-                            <input class="form-control" type="text" value="{{ request.form['visa_dep_dob'] }}"
+                            <input class="form-control" type="text" value="{{ entry['visa_dep_dob'] }}"
                                    name="visa_dep_dob" id="visa_dep_dob"
                                    placeholder="Date of Birth">
                         </div>

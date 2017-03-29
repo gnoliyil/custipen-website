@@ -10,6 +10,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/stylesheet.css') }}" rel="stylesheet">
 
 </head>
@@ -45,9 +46,14 @@
     ('/committee/', 'committee', 'Committee'),
     ('/program/', 'program', 'Program'),
     ('/register/', 'register', 'Register'),
-    ('/travel/', 'travel', 'Travel Info'),
     ('/photos/', 'photos', 'Photos'),
-    ('/presentation/', 'presentation', 'Presentation')
+    ('/presentations/', 'presentations', 'Presentations'),
+    ('/travel/', 'travel', 'Travel Info')
+    ] -%}
+
+    {% set navigation_bar_2 = [
+    ('/edit/', 'edit', 'Edit Information'),
+    ('/logout/', 'logout', 'Log out')
     ] -%}
 
     {% set active_page = active |default('index') -%}
@@ -82,7 +88,13 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{{ url_for('static', filename='js/npm.js') }}"></script>
 <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap-datepicker.min.js') }}"></script>
+<script>
+    $('.datepicker input').datepicker({
+        format: 'yyyy/mm/dd',
+    });
+</script>
 </body>
 </html>
 

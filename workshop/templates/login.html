@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+{% set subtitle = "Login" %}
+{% block body %}
+
+{% if error_msg %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <strong>Error</strong>
+            </div>
+            <div class="panel-body">
+                {{ error_msg }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal" action="{{ url_for('login') }}" method="POST">
+            <div class="section-header">
+                <h3>Log In</h3>
+            </div>
+
+            <div class="form-group row">
+                <label for="first_name" class="col-md-3 control-label">First Name</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="first_name" id="first_name"
+                           placeholder="First Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="last_name" class="col-md-3 control-label">Last Name</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="date datepicker">
+                    <label for="dob" class="col-md-3 control-label">Date of Birth</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="dob" id="dob" placeholder="Date of Birth">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="auth_code" class="col-md-3 control-label">Captcha</label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" value="" name="auth_code" id="auth_code"
+                           placeholder="">
+                    <p class="help-block">Please input the four numbers/letters shown in the image below.</p>
+                    <p class="help-block">
+                        <script>
+                            function refreshCaptcha() {
+                                document.getElementById('captcha').setAttribute('src', "{{ url_for('captcha') }}");
+                            }
+                        </script>
+                        <a onclick="refreshCaptcha();"><img src="{{ url_for('captcha') }}" id="captcha"/></a>
+                    </p>
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-default">Sign in</button>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+{% endblock %}
