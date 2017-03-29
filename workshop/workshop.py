@@ -302,7 +302,7 @@ def participants():
 @app.route('/admin/login', methods=['POST', 'GET'])
 def admin_login():
     if session.get('admin_logged_in'):
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('user_info'))
     else:
         if request.method == 'POST':
             username = request.form['username']
@@ -335,9 +335,9 @@ def admin_logout():
 
 
 USER_INFO_PER_PAGE = 20
-@app.route('/admin/', defaults={'page': 1})
-@app.route('/admin/users/', defaults={'page': 1})
 @app.route('/admin/users/page/<int:page>')
+@app.route('/admin/users/', defaults={'page': 1})
+@app.route('/admin/', defaults={'page': 1})
 def user_info(page):
     if not session.get('admin_logged_in'):
         return redirect(url_for('admin_login'))
