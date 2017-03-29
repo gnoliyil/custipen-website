@@ -16,7 +16,6 @@ CREATE TABLE users (
   talk_title           TEXT,
   talk_url             TEXT,
 
-  is_visa              INTEGER,
   visa_fullname        TEXT,
   visa_citizenship     TEXT,
   visa_gender          TEXT,
@@ -30,8 +29,7 @@ CREATE TABLE users (
   visa_dep_passport_id TEXT,
   visa_dep_dob         TEXT,
 
-  submit_time          TEXT NOT NULL,
-  password_hash             NOT NULL
+  submit_time          TEXT NOT NULL
 );
 CREATE TABLE photo (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
