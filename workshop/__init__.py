@@ -108,19 +108,22 @@ def register():
         else:
             if request.files:
                 file = request.files['talk_file']
+                
+                if file.name:
+                    if (not file.filename.endswith('.pdf')):
+                        return render_template('register.html', active=register,
+                                       error_msg='Please upload PDF file less than 5MB.')
 
-                if (not file.filename.endswith('.pdf')):
-                    return render_template('register.html', active=register,
-                                   error_msg='Please upload PDF file less than 5MB.')
+                    basename = form['first_name'] + '_' + form['last_name'] + '_' + form['talk_title']
+                    basename = filter(lambda x: x.isalnum() or x == '_', basename)
+                    filename = basename + '.pdf'
 
-                basename = form['first_name'] + '_' + form['last_name'] + '_' + form['talk_title']
-                basename = filter(lambda x: x.isalnum() or x == '_', basename)
-                filename = basename + '.pdf'
-
-                talk_url = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                file.save(talk_url)
+                    talk_url = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                    file.save(talk_url)
+                else:
+                    filename = talk_url = ''
             else:
-                talk_url = ''
+                filename = talk_url = ''
 
             cur = db.execute(
                 'INSERT INTO users (first_name, last_name, email, institution, dob, address, '
