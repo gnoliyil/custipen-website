@@ -128,17 +128,13 @@ def register():
             cur = db.execute(
                 'INSERT INTO users (first_name, last_name, email, institution, dob, address, '
                 'arrival_time, departure_time, is_talk, talk_title, talk_url, '
-                'visa_fullname, visa_citizenship, visa_gender, visa_passport_id, '
-                'visa_dob, visa_relation, visa_dep_fullname, visa_dep_citizenship, visa_dep_gender, '
-                'visa_dep_passport_id, visa_dep_dob, submit_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                'submit_time) values (?,?,?,?,?,?,?,?,?,?,?,?)',
                 (
                     form['first_name'], form['last_name'], form['email'],
                     form['institution'], form['dob'], form['address'], form['arrival_time'],
                     form['departure_time'], int(form['is_talk']), form['talk_title'],
-                    filename, form['visa_fullname'], form['visa_citizenship'],
-                    form['visa_gender'], form['visa_passport_id'], form['visa_dob'], form['visa_relation'],
-                    form['visa_dep_fullname'], form['visa_dep_citizenship'], form['visa_dep_gender'],
-                    form['visa_dep_passport_id'], form['visa_dep_dob'],datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    filename, 
+                    datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             	))
             db.commit()
 
@@ -191,23 +187,22 @@ def edit():
         db = get_db()
         cur = db.execute(
             'UPDATE users SET first_name = ?, last_name = ?, email = ?, institution = ?, '
-            'dob = ?, address = ?, arrival_time = ?, departure_time = ?, is_talk = ?, talk_title = ?, '
-            'visa_fullname = ?, visa_citizenship = ?, visa_gender = ?, '
-            'visa_passport_id = ?, visa_dob = ?, visa_relation = ?, visa_dep_fullname = ?, '
-            'visa_dep_citizenship = ?, visa_dep_gender = ?, visa_dep_passport_id = ?, '
-            'visa_dep_dob = ?, submit_time = ? WHERE id = ?; ',
+            'address = ?, arrival_time = ?, departure_time = ?, is_talk = ?, talk_title = ?, '
+            'submit_time = ? WHERE id = ?; ',
             (
                 form['first_name'], form['last_name'], form['email'],
-                form['institution'], form['dob'], form['address'], form['arrival_time'],
+                form['institution'], form['address'], form['arrival_time'],
                 form['departure_time'], form['is_talk'], form['talk_title'],
-                form['visa_fullname'], form['visa_citizenship'],
-                form['visa_gender'], form['visa_passport_id'], form['visa_dob'], form['visa_relation'],
-                form['visa_dep_fullname'], form['visa_dep_citizenship'], form['visa_dep_gender'],
-                form['visa_dep_passport_id'], form['visa_dep_dob'], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 user_id
             )
         )
         db.commit()
+
+        if form['dob']:
+            cur = db.execute('UPDATE users SET dob=? WHERE id=?', (form['dob'], user_id))
+            db.commit()
+    
     else:
         user_id = session['logged_in']
         db = get_db()
