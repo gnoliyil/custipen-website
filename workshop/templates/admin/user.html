@@ -20,17 +20,6 @@
             <th>Give Talk?</th>
             <th>Talk Title</th>
             <th>Talk File</th>
-            <th>Visa Fullname</th>
-            <th>Visa Citizenship</th>
-            <th>Visa Gender</th>
-            <th>Visa Passport ID</th>
-            <th>Visa DOB</th>
-            <th>Visa Relationship</th>
-            <th>Visa Fullname</th>
-            <th>Visa Citizenship</th>
-            <th>Visa Gender</th>
-            <th>Visa Passport ID</th>
-            <th>Visa DOB</th>
             <th>Submit Time</th>
         </tr>
         </thead>
@@ -45,12 +34,10 @@
                 </td>
 
                 {% for item in ['id', 'first_name', 'last_name', 'institution', 'email', 'dob', 'arrival_time',
-                   'departure_time', 'is_talk', 'talk_title', 'talk_url', 'visa_fullname', 'visa_citizenship',
-                   'visa_gender', 'visa_passport_id', 'visa_dob', 'visa_relation', 'visa_dep_fullname',
-                   'visa_dep_citizenship', 'visa_dep_gender', 'visa_dep_passport_id',
-                   'visa_dep_dob', 'submit_time'] %}
+                   'departure_time', 'is_talk', 'talk_title', 'talk_url', 
+                   'submit_time'] %}
                 <td>{% if item == 'talk_url' %}
-                        <a href="{{ url_for('uploaded_file', filename=entry[item]) }}">Download</a>
+                        {% if entry[item] %} <a href="{{ url_for('uploaded_file', filename=entry[item]) }}">Download</a> {% endif %}
                     {% else %}
                         {{ entry[item] }}
                     {% endif %}
