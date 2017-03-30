@@ -106,7 +106,7 @@ def register():
                                    error_msg='This email has been already registered, '
                                              'please log-in to modify your information.')
         else:
-            if request.files:
+            if request.files['talk_file']:
                 file = request.files['talk_file']
 
                 if (not file.filename.endswith('.pdf')):
@@ -117,7 +117,7 @@ def register():
                 basename = filter(lambda x: x.isalnum() or x == '_', basename)
                 filename = basename + '.pdf'
 
-                talk_url = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                talk_url = os.path.join(app.config['PROJECT_ROOT'], app.config['UPLOAD_FOLDER'], filename)
                 file.save(talk_url)
             else:
                 talk_url = ''
@@ -177,7 +177,7 @@ def edit():
             basename = filter(lambda x: x.isalnum() or x == '_', basename)
             filename = basename + '.pdf'
 
-            talk_url = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            talk_url = os.path.join(app.config['PROJECT_ROOT'], app.config['UPLOAD_FOLDER'], filename)
             file.save(talk_url)
 
             db = get_db()
@@ -269,6 +269,10 @@ def login():
         else:
             return render_template('login.html')
 
+@app.route('/logout/')
+def logout():
+    session.pop('logged_in')
+    return redirect(url_for('home'))
 
 @app.route('/participants/')
 def participants():
@@ -366,7 +370,7 @@ def edit_user(id):
             basename = filter(lambda x: x.isalnum() or x == '_', basename)
             filename = basename + '.pdf'
 
-            talk_url = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            talk_url = os.path.join(app.config['PROJECT_ROOT'], app.config['UPLOAD_FOLDER'], filename)
             file.save(talk_url)
 
             db = get_db()
@@ -429,7 +433,7 @@ def photo_delete(id):
     img_name = cur.fetchone()['url']
     cur = db.execute('DELETE FROM photo WHERE id=?', (id, ))
     db.commit()
-    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], img_name))
+    os.remove(os.path.join(app.config['PROJECT_ROOT'], app.config['UPLOAD_FOLDER'], img_name))
     return redirect(url_for('edit_gallery'))
 
 
@@ -449,10 +453,9 @@ def photo_upload():
         basename = datetime.datetime.now().strftime('%Y%m%d%H%M%S') + str(random.randint(10, 99))
         filename = basename + fileext
 
-        image_url = os.path.join(app.config['UPLOAD_FOLDER'], 'images', filename)
-        db_image_url = os.path.join('images', filename)
-        file.save(image_url)
-
+        image_url = os.path.join(app.config['PROJECT_ROOT'], app.config['UPLOAD_FOLDER'], 'images', filename) 
+        db_image_url = os.path.join('images', filename) 
+        file.save(image_url) 
 
     else:
         return redirect(url_for('edit_gallery'))
@@ -496,5 +499,5 @@ def photo_move_down(id):
 
 @app.route('/uploads/<path:filename>')
 def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],
+    return send_from_directory(app.config['PROJECT_ROOT'], app.config['UPLOAD_FOLDER'],
                                filename)

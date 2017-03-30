@@ -1,7 +1,8 @@
 import os
 
 class AppConfig:
-    DATABASE = 'users.db'
+    PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
+    DATABASE = '/var/www/custipen-website/users.db' 
     SECRET_KEY = 'development key'
     USERNAME = 'admin'
     PASSWORD = 'default'

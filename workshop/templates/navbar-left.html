@@ -10,6 +10,6 @@
     </li>
     {% endfor %}
     {% else %}
-    <li{% if "login" == active_page %}　class="active"{% endif %}><a href="/login/">Login</a></li>
+    <li{% if "login" == active_page %}　class="active"{% endif %}><a href="{{ url_for('login') }}">Login</a></li>
     {% endif %}
 </ul>

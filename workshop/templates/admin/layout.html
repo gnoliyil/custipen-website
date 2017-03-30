@@ -19,9 +19,9 @@
 {% include 'admin/nav.html' %}
 
 {% set navigation_bar = [
-('/admin/users/', 'users', 'View User info'),
-('/admin/edit-gallery/', 'gallery', 'Edit Gallery'),
-('/admin/logout/', 'logout', 'Log Out')
+(url_for('user_info'), 'users', 'View User info'),
+(url_for('edit_gallery'), 'gallery', 'Edit Gallery'),
+(url_for('admin_logout'), 'logout', 'Log Out')
 ] -%}
 
 {% set active_page = active |default('index') -%}

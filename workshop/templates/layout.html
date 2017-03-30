@@ -42,18 +42,18 @@
 
 
     {% set navigation_bar = [
-    ('/', 'index', 'Index'),
-    ('/committee/', 'committee', 'Committee'),
-    ('/program/', 'program', 'Program'),
-    ('/register/', 'register', 'Register'),
-    ('/photos/', 'photos', 'Photos'),
-    ('/presentations/', 'presentations', 'Presentations'),
-    ('/travel/', 'travel', 'Travel Info')
+    (url_for('home'), 'index', 'Index'),
+    (url_for('committee'), 'committee', 'Committee'),
+    (url_for('program'), 'program', 'Program'),
+    (url_for('register'), 'register', 'Register'),
+    (url_for('photos'), 'photos', 'Photos'),
+    (url_for('presentations'), 'presentations', 'Presentations'),
+    (url_for('travel'), 'travel', 'Travel Info')
     ] -%}
 
     {% set navigation_bar_2 = [
-    ('/edit/', 'edit', 'Edit Information'),
-    ('/logout/', 'logout', 'Log out')
+    (url_for('edit'), 'edit', 'Edit Information'),
+    (url_for('logout'), 'logout', 'Log out')
     ] -%}
 
     {% set active_page = active |default('index') -%}
