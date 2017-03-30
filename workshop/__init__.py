@@ -109,7 +109,7 @@ def register():
             if request.files['talk_file']:
                 file = request.files['talk_file']
                 
-                if file.name:
+                if file.filename:
                     if (not file.filename.endswith('.pdf')):
                         return render_template('register.html', active=register,
                                        error_msg='Please upload PDF file less than 5MB.')
