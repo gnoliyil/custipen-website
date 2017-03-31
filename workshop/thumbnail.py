@@ -46,7 +46,7 @@ class Thumbnail(object):
         miniature = self._get_name(name, fm, size, crop, bg, quality)
 
         original_filename = os.path.join(self.app.config['PROJECT_ROOT'], self.app.config['UPLOAD_FOLDER'], self.app.config['MEDIA_FOLDER'],  img_name)
-        thumb_filename_for_url = os.path.join(self.app.config['PROJECT_ROOT'], self.app.config['MEDIA_THUMBNAIL_FOLDER'], miniature)
+        thumb_filename_for_url = os.path.join( self.app.config['MEDIA_THUMBNAIL_FOLDER'], miniature)
         thumb_filename = os.path.join(self.app.config['PROJECT_ROOT'], self.app.config['UPLOAD_FOLDER'], self.app.config['MEDIA_THUMBNAIL_FOLDER'], miniature)
 
         # create folders
@@ -72,8 +72,6 @@ class Thumbnail(object):
 
             if bg:
                 img = self._bg_square(img, bg)
-
-            print thumb_filename
 
             img.save(thumb_filename, image.format, quality=quality)
 
