@@ -33,7 +33,7 @@
                 </h2>
             </div>
             <div class="col-md-2 col-lg-2" style="margin-top: 20px;">
-                <a href="./register.html">
+                <a href="{{ url_for('register') }}">
                     <button class="btn btn-lg btn-default hidden-sm hidden-xs">Register Now</button>
                 </a>
             </div>
@@ -48,7 +48,8 @@
     (url_for('register'), 'register', 'Register'),
     (url_for('photos'), 'photos', 'Photos'),
     (url_for('presentations'), 'presentations', 'Presentations'),
-    (url_for('travel'), 'travel', 'Travel Info')
+    (url_for('travel'), 'travel', 'Travel Info'),
+    (url_for('accommodation'), 'accommodation', 'Accommodation')
     ] -%}
 
     {% set navigation_bar_2 = [

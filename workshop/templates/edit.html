@@ -124,11 +124,11 @@
                     <div class="col-md-9">
                         <label class="radio-inline">
                             <input class="form-check-input" type="radio" name="is_talk" id="is_talk1" value="1"
-                                   checked="{{ entry['is_talk'] and 'true' or 'false' }}"> Yes
+                                   {% if entry['is_talk'] == 1 %}checked{%else%}{%endif%}> Yes
                         </label>
                         <label class="radio-inline">
                             <input class="form-check-input" type="radio" name="is_talk" id="is_talk" value="0"
-                                   checked="{{ entry['is_talk'] and 'false' or 'true' }}"> No
+                                   {% if entry['is_talk'] == 1 %}{%else%}checked{%endif%}> No
                         </label>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
 
             <div class="section-content">
                 <p class="text-info">
-                    If you need an official <strong>invitation letter</strong>, please offer below infomation.
+                    If you need an official <strong>invitation letter</strong>, please contact yuanzhuoma (at) pku.edu.cn.
                 </p>
 
 

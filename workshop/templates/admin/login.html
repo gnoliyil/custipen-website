@@ -68,7 +68,10 @@
                                            value="">
                                 </div>
                                 <div class="form-group">
-                                    <img src="{{ url_for('captcha') }}" />"
+				    <script>function refreshCaptcha() {
+				    	document.getElementById('captcha').setAttr('src', "{{ url_for('captcha') }}"); 
+				    }</script>
+                                    <img id="captcha" onclick="refreshCaptcha();" src="{{ url_for('captcha') }}" />
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <button type="submit" class="btn btn-success btn-block">Login</button>
