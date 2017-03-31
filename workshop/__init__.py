@@ -8,6 +8,10 @@ import datetime
 import random
 import re
 from hashlib import sha1
+from smtplib import SMTP
+from email.mime.text import MIMEText
+from email.Utils import formatdate
+
 from captcha.image import ImageCaptcha
 from thumbnail import Thumbnail
 from pagination import Pagination
@@ -51,6 +55,10 @@ def home():
 @app.route('/travel/')
 def travel():
     return render_template('travel.html', active="travel")
+
+@app.route('/accommodation/')
+def accommodation():
+    return render_template('accommodation.html', active="accommodation")
 
 @app.route('/program/')
 def program():
@@ -135,8 +143,40 @@ def register():
                     form['departure_time'], int(form['is_talk']), form['talk_title'],
                     filename, 
                     datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            	))
+                ))
             db.commit()
+            
+	    try:
+                smtp = SMTP()
+                smtp.connect('smtp.163.com', 25)
+                smtp.login('custipen@163.com', 'custipen1')
+        
+                from_addr = 'custipen@163.com'
+                to_addr = form['email']
+                subj = 'CUSTIPEN Workshop Registration Acknowledgement'
+                date = datetime.datetime.now().strftime( " %H:%M" )
+                message_text = """
+Dear {} {}:
+This email is to acknowledge that we received your registration for the 2017 CUSTIPEN workshop at Huzhou, 2017.
+Your password is {}. 
+We are looking forward to seeing you in the workshop.
+If you have any questions, please contact us.
+
+Best wishes,
+On behalf of the local organization group
+
+Scientific Secretary: Junchen Pei(custipen@pku.edu.cn)
+""".format(form['first_name'], form['last_name'], form['dob'])
+                msg = MIMEText(message_text)
+                msg['Subject'] = subj
+                msg['Date'] = formatdate(localtime=True)
+                msg['From'] = from_addr
+                msg['To'] = to_addr
+                smtp.sendmail(from_addr, to_addr, msg.as_string())
+
+	        smtp.quit()
+            except:
+	        pass
 
             session['logged_in'] = cur.lastrowid
             return redirect(url_for('home'))
@@ -202,7 +242,8 @@ def edit():
         if form['dob']:
             cur = db.execute('UPDATE users SET dob=? WHERE id=?', (form['dob'], user_id))
             db.commit()
-    
+    	
+        return redirect(url_for('edit'))
     else:
         user_id = session['logged_in']
         db = get_db()
@@ -500,5 +541,5 @@ def photo_move_down(id):
 
 @app.route('/uploads/<path:filename>')
 def uploaded_file(filename):
-    return send_from_directory(app.config['PROJECT_ROOT'], app.config['UPLOAD_FOLDER'],
+    return send_from_directory(app.config['UPLOAD_FOLDER'],
                                filename)
