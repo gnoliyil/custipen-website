@@ -375,74 +375,7 @@ def user_info(page):
     pagination = Pagination(page, USER_INFO_PER_PAGE, count)
     return render_template('admin/user.html', entries=entries, pagination=pagination)
 
-
 #@app.route('/admin/export-csv/')
-
-@app.route('/admin/edit-user/<id>/')
-def edit_user(id):
-    if not session.get('admin_logged_in'):
-        return redirect(url_for('admin_login'))
-
-    if request.method == "POST":
-        # update form
-        form = request.form
-
-        user_id = id
-
-        # check captcha
-        captcha = request.form['auth_code']
-        answer = session['chars']
-        correct = (answer and
-                   ''.join(answer).capitalize() == captcha.capitalize()) \
-                  and 1 or 0
-        if not correct:
-            return render_template('admin/edit.html', action='edit', error_msg='Captcha error')
-
-
-        if form['is_new_file'] and request.files:
-            file = request.files['talk_file']
-
-            if not file.name.endswith('.pdf') or file.size > 5000 * 1024:
-                return render_template('admin/edit.html', active='edit',
-                                       error_msg='Please upload PDF file less than 5MB.')
-
-            basename = form['first_name'] + '_' + form['last_name'] + '_' + form['talk_title']
-            basename = filter(lambda x: x.isalnum() or x == '_', basename)
-            filename = basename + '.pdf'
-
-            talk_url = os.path.join(app.config['PROJECT_ROOT'], app.config['UPLOAD_FOLDER'], filename)
-            file.save(talk_url)
-
-            db = get_db()
-            cur = db.execute('UPDATE users SET talk_url = ?', (talk_url, ))
-            cur.commit()
-
-        db = get_db()
-        cur = db.execute(
-            'UPDATE users SET first_name = ?, last_name = ?, email = ?, institution = ?, '
-            'dob = ?, address = ?, arrival_time = ?, departure_time = ?, is_talk = ?, talk_title = ?, '
-            'visa_fullname = ?, visa_citizenship = ?, visa_gender = ?, '
-            'visa_passport_id = ?, visa_dob = ?, visa_relation = ?, visa_dep_fullname = ?, '
-            'visa_dep_citizenship = ?, visa_dep_gender = ?, visa_dep_passport_id = ?, '
-            'visa_dep_dob = ?, submit_time = ? WHERE id = ?; ',
-            (
-                form['first_name'], form['last_name'], form['email'],
-                form['institution'], form['dob'], form['address'], form['arrival_time'],
-                form['departure_time'], form['is_talk'], form['talk_title'],
-                form['visa_fullname'], form['visa_citizenship'],
-                form['visa_gender'], form['visa_passport_id'], form['visa_dob'], form['visa_relation'],
-                form['visa_dep_fullname'], form['visa_dep_citizenship'], form['visa_dep_gender'],
-                form['visa_dep_passport_id'], form['visa_dep_dob'], datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                user_id
-            )
-        )
-        db.commit()
-    else:
-        db = get_db()
-        cur = db.execute('SELECT * from users WHERE id=?', (id, ))
-        entry = cur.fetchone()
-        return render_template('admin/edit.html', active='edit', entry=entry)
-
 
 @app.route('/admin/user/delete/<id>/')
 def user_delete(id):
@@ -538,6 +471,64 @@ def photo_move_down(id):
     cur = db.execute('UPDATE photo SET `order`=? WHERE id=?', (next_order, id))
     db.commit()
     return redirect(url_for('edit_gallery'))
+
+@app.route('/admin/user/edit/<int:id>/', methods=['GET', 'POST'])
+def user_edit(id):
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+
+    if request.method == "POST":
+        # update form
+        form = request.form
+
+        user_id = id
+
+        if form['is_new_file'] and request.files:
+            file = request.files['talk_file']
+            
+            if file.filename:
+                if not file.name.endswith('.pdf') or file.size > 5000 * 1024:
+                    return render_template('edit.html', active='edit',
+                                           error_msg='Please upload PDF file less than 5MB.')
+
+                basename = form['first_name'] + '_' + form['last_name'] + '_' + form['talk_title']
+                basename = filter(lambda x: x.isalnum() or x == '_', basename)
+                filename = basename + '.pdf'
+
+                talk_url = os.path.join(app.config['PROJECT_ROOT'], app.config['UPLOAD_FOLDER'], filename)
+                file.save(talk_url)
+            
+                db = get_db()
+                cur = db.execute('UPDATE users SET talk_url = ?', (filename, ))
+                cur.commit()
+
+        db = get_db()
+        cur = db.execute(
+            'UPDATE users SET first_name = ?, last_name = ?, email = ?, institution = ?, '
+            'address = ?, arrival_time = ?, departure_time = ?, is_talk = ?, talk_title = ?, '
+            'submit_time = ? WHERE id = ?; ',
+            (
+                form['first_name'], form['last_name'], form['email'],
+                form['institution'], form['address'], form['arrival_time'],
+                form['departure_time'], form['is_talk'], form['talk_title'],
+                datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                user_id
+            )
+        )
+        db.commit()
+
+        if form['dob']:
+            cur = db.execute('UPDATE users SET dob=? WHERE id=?', (form['dob'], user_id))
+            db.commit()
+    	
+        return redirect(url_for('user_info'))
+    else:
+        user_id = id
+        db = get_db()
+        cur = db.execute('SELECT * from users WHERE id=?', (user_id, ))
+        entry = cur.fetchone()
+        return render_template('admin/user_edit.html', user_id=user_id, active='user_info', entry=entry)
+
 
 @app.route('/uploads/<path:filename>')
 def uploaded_file(filename):
