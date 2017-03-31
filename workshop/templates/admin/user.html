@@ -9,6 +9,7 @@
         <thead>
         <tr style="white-space: nowrap;">
             <th>Delete?</th>
+            <th>Edit?</th>
             <th>#</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -32,6 +33,8 @@
                         <span class="glyphicon glyphicon-trash"></span>
                     </a>
                 </td>
+
+                <td><a href="{{ url_for('user_edit', id=entry['id']) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
 
                 {% for item in ['id', 'first_name', 'last_name', 'institution', 'email', 'dob', 'arrival_time',
                    'departure_time', 'is_talk', 'talk_title', 'talk_url', 
