@@ -1,0 +1,199 @@
+{% extends 'admin/layout.html' %}
+{% set subtitle = "Edit Information" %}
+{% block body %}
+
+{% if not entry %}
+    {% set entry = request.form %}
+{% endif %}
+
+{% if error_msg %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <strong>Error</strong>
+            </div>
+            <div class="panel-body">
+                {{ error_msg }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<h2 class="sub-header">Edit User Information</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal" enctype="multipart/form-data" action="{{ url_for('user_edit', id=user_id) }}" method="POST">
+            <div class="section-header">
+                <h3>Personal Info</h3>
+            </div>
+
+            <div class="section-content">
+                <div class="form-group row">
+                    <label for="first_name" class="col-md-3 control-label"><span
+                            class="text-danger">First Name *</span></label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" value="{{ entry['first_name'] }}"
+                               name="first_name" id="first_name"
+                               placeholder="First name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="last_name" class="col-md-3 control-label"><span
+                            class="text-danger">Last Name *</span></label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" value="{{ entry['last_name'] }}" name="last_name"
+                               id="last_name"
+                               placeholder="Last name">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="email" class="col-md-3 control-label"><span class="text-danger">E-mail *</span></label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="email" value="{{ entry['email'] }}" name="email"
+                               id="email" placeholder="E-mail address">
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label for="institution" class="col-md-3 control-label"><span
+                            class="text-danger">Institution *</span></label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" value="{{ entry['institution'] }}"
+                               name="institution" id="institution"
+                               placeholder="Institution">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="dob" class="col-md-3 control-label"><span
+                            class="text-danger">Password *</span></label>
+                    <div class="col-md-9 ">	
+                            <input class="form-control" type="password" value="" name="dob"
+                                   id="dob" placeholder="Password (leave it empty if you don't want to change) ">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="arrival_time" class="col-md-3 control-label">Address</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" value="{{ entry['address'] }}" name="address"
+                               id="address"
+                               placeholder="Address">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="arrival_time" class="col-md-3 control-label">Arrival Time</label>
+                    <div class="col-md-9 ">
+                        <div class="date datepicker">
+                            <input class="form-control" type="text" value="{{ entry['arrival_time'] }}"
+                                   name="arrival_time" id="arrival_time"
+                                   placeholder="Arrival Time">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label for="departure_time" class="col-md-3 control-label">Departure Time</label>
+                    <div class="col-md-9 ">
+                        <div class="date datepicker">
+                            <input class="form-control" type="text" value="{{ entry['departure_time'] }}"
+                                   name="departure_time" id="departure_time"
+                                   placeholder="Departure Time">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section-header">
+                <h3>Talk Info</h3>
+            </div>
+
+            <div class="section-content">
+
+                <div class="form-group row">
+                    <label for="is_talk" class="col-md-3 control-label">Give Talk?</label>
+                    <div class="col-md-9">
+                        <label class="radio-inline">
+                            <input class="form-check-input" type="radio" name="is_talk" id="is_talk1" value="1"
+                                   {% if entry['is_talk'] == 1 %}checked{%else%}{%endif%}> Yes
+                        </label>
+                        <label class="radio-inline">
+                            <input class="form-check-input" type="radio" name="is_talk" id="is_talk" value="0"
+                                   {% if entry['is_talk'] == 1 %}{%else%}checked{%endif%}> No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="talk_title" class="col-md-3 control-label">Talk Title</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" value="{{ entry['talk_title'] }}"
+                               name="talk_title" id="talk_title"
+                               placeholder="Talk Title">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="is_new_file" class="col-md-3 control-label">Upload New File?</label>
+                    <div class="col-md-9">
+                        <label class="radio-inline">
+                            <input class="form-check-input" type="radio" name="is_new_file" id="is_new_file1" value="1"
+                                   checked="{{ entry.get('is_new_file') and 'true' or 'false' }}"> Yes
+                        </label>
+                        <label class="radio-inline">
+                            <input class="form-check-input" type="radio" name="is_new_file" id="is_new_file" value="0"
+                                   checked="{{ entry.get('is_new_file') and 'false' or 'true' }}"> No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="talk_file" class="col-md-3 control-label">Abstract File</label>
+                    <div class="col-md-9">
+                        <input class="" type="file" value="" name="talk_file" id="talk_file">
+                        <p class="help-block">Accept pdf less than 5M only.</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="section-content">
+
+                <div class="form-group row">
+                    <label for="auth_code" class="col-md-3 control-label"><span
+                            class="text-danger">Authentication *</span></label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" value="" name="auth_code" id="auth_code"
+                               placeholder="">
+                        <p class="help-block">Please input the four numbers/letters shown in the image below.</p>
+                        <p class="help-block">
+                            <script>
+                                function refreshCaptcha() {
+                                    document.getElementById('captcha').setAttribute('src', "{{ url_for('captcha') }}");
+                                }
+                            </script>
+                            <a onclick="refreshCaptcha();"><img src="{{ url_for('captcha') }}" id="captcha"/></a>
+                        </p>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
